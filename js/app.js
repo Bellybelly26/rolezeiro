@@ -220,6 +220,12 @@ function persist(){
 const $ = s=>document.querySelector(s);
 const $$ = s=>Array.from(document.querySelectorAll(s));
 function img(seed,w,h){ return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`; }
+/* fallback: se uma foto externa não carregar, esconde o <img> e deixa o
+   gradiente de fundo do próprio container aparecer, em vez de ficar preto/quebrado */
+document.addEventListener('error', function(e){
+  const el = e.target;
+  if(el && el.tagName === 'IMG'){ el.style.display = 'none'; el.dataset.broken = '1'; }
+}, true);
 function initials(name){ return name.split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
 const MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
 const DIAS_SEM = ['dom','seg','ter','qua','qui','sex','sáb'];
@@ -375,7 +381,7 @@ function renderHome(){
 
   return `
   <section class="hero">
-    <div class="hero-bg" style="background-image:url('${img(featured.cover,1600,1000)}')"></div>
+    <div class="hero-bg" style="background-image:url('${img(featured.cover,1600,1000)}'), linear-gradient(135deg, var(--violet), var(--pink))"></div>
     <div class="hero-scrim"></div>
     <div class="hero-content">
       <span class="hero-eyebrow"><span class="dot-live"></span>Destaque da semana</span>
