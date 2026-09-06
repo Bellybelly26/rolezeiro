@@ -1,63 +1,44 @@
 # rolezeiro — Descubra. Conecte-se. Viva.
 
-Protótipo de plataforma brasileira de música, shows, festivais e eventos, com
-comunidades de fãs. Feito em React + Vite + Tailwind CSS.
+Protótipo de plataforma brasileira de música, shows, festivais e eventos,
+com comunidades de fãs. Feito **100% em HTML, CSS e JavaScript puro** —
+sem React, sem Vite, sem npm, sem build. É só abrir e usar, igual ao site
+do TCC.
 
-## ⚠️ Importante: como rodar (não abra o index.html direto)
+## Arquivos
 
-Este projeto usa Vite. Isso significa que os arquivos em `src/` (JSX, imports
-como `react`) **não rodam sozinhos num navegador** — eles precisam passar por
-um processo de build/dev server primeiro. Se você abrir o `index.html`
-direto (duplo clique, extensão "Live Server" etc.) ou publicar a pasta
-crua no GitHub Pages, a tela vai ficar em branco.
+- `index.html` — a página
+- `style.css` — toda a aparência (cores, layout, cartões, etc.)
+- `app.js` — os dados fictícios (artistas, eventos, comunidades) e toda a
+  lógica do site (navegação, favoritos, publicações, formulários)
 
-## Rodando localmente no VS Code
+## Como testar no seu computador
 
-No terminal integrado do VS Code, dentro da pasta do projeto:
+Só abrir o `index.html` no navegador (duplo clique, ou clique direito →
+"Abrir com" → Chrome/Firefox). Não precisa instalar nada.
 
-```bash
-npm install
-npm run dev
-```
+No VS Code, se quiser um recarregamento automático ao editar, instale a
+extensão **Live Server** e clique em "Go Live" no canto inferior direito.
 
-Aí abra o link que aparecer (ex.: `http://localhost:5173`).
+## Como publicar no GitHub Pages (sem build, sem Actions)
 
-## Publicando no GitHub Pages
-
-Este projeto já vem com um workflow pronto em
-`.github/workflows/deploy.yml`, que faz o build e publica automaticamente
-sempre que você subir código para o branch `main` (ou `master`).
-
-Passo a passo:
-
-1. Suba todos os arquivos deste projeto (incluindo a pasta `.github`) para
-   o seu repositório no GitHub (pelo VS Code: aba **Source Control** →
-   `+` para adicionar tudo → escreva uma mensagem → **Commit** → **Sync/Push**).
-2. No GitHub, vá em **Settings → Pages** (na barra lateral do repositório).
-3. Em **Build and deployment → Source**, troque para **GitHub Actions**
-   (se estiver como "Deploy from a branch", é isso que causa a tela branca:
-   ele publica os arquivos crus em vez de rodar o build).
-4. Vá na aba **Actions** do repositório e confira se o workflow
-   "Deploy para o GitHub Pages" rodou com sucesso (bolinha verde). Se
-   falhar, clique nele para ver o log do erro.
-5. Espere terminar e acesse o link em **Settings → Pages** (algo como
+1. Suba os 3 arquivos (`index.html`, `style.css`, `app.js`) para o seu
+   repositório no GitHub — pode ser pela aba **Source Control** do VS
+   Code (ícone de ramificação → `+` para adicionar tudo → escreva uma
+   mensagem → **Commit** → **Sync Changes**), ou arrastando os arquivos
+   direto na página do repositório no site do GitHub.
+2. No GitHub, vá em **Settings → Pages**.
+3. Em **Build and deployment → Source**, deixe em **Deploy from a
+   branch**.
+4. Em **Branch**, escolha `main` (ou `master`) e a pasta `/ (root)`, e
+   clique em **Save**.
+5. Espere um minuto e acesse o link que aparece ali mesmo (algo como
    `https://seu-usuario.github.io/rolezeiro/`).
 
-## Build de produção manual (opcional)
+Pronto — sem workflow, sem build, sem Actions.
 
-```bash
-npm run build
-npm run preview
-```
+## Sobre os dados
 
-## Estrutura
-
-- `src/App.jsx` — toda a aplicação (telas, dados fictícios, componentes)
-- `src/main.jsx` — ponto de entrada do React (com Error Boundary: se algo
-  quebrar, aparece a mensagem de erro na tela em vez de ficar tudo branco)
-- `src/index.css` — Tailwind + fontes (Unbounded / Manrope)
-- `.github/workflows/deploy.yml` — build e publicação automática no GitHub Pages
-
-Todos os dados (artistas, eventos, festivais, comunidades, notificações) são
-fictícios e ficam em memória (state do React) — não há backend nem
-persistência entre sessões.
+Todos os artistas, eventos, festivais, comunidades e notificações são
+fictícios e ficam em memória (no JavaScript) — ao recarregar a página,
+tudo volta ao estado inicial. Não há backend nem banco de dados.
