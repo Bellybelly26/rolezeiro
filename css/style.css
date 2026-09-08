@@ -203,6 +203,11 @@ img{ max-width:100%; display:block; }
 .modal-card--preview{ max-width:420px; }
 @keyframes popIn{ from{ transform:scale(.94); opacity:0; } to{ transform:scale(1); opacity:1; } }
 
+/* IMPORTANTE: [hidden] tem a mesma força de uma classe no CSS — sem isso aqui,
+   .modal/.panel/.drawer com "display" definido vencem o hidden e o elemento
+   fica visível na tela inteira mesmo "escondido". Isso forçа o hidden a sempre vencer. */
+.modal[hidden], .panel[hidden], .drawer[hidden]{ display:none !important; }
+
 /* =========================================================
    BUTTONS
    ========================================================= */
