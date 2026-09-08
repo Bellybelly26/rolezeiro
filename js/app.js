@@ -206,12 +206,14 @@ function defaultState(){
 }
 let STATE = loadState();
 function persist(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    theme:STATE.theme, user:STATE.user,
-    favorites:[...STATE.favorites], interested:[...STATE.interested],
-    following:[...STATE.following], likedPosts:[...STATE.likedPosts],
-    notifications:STATE.notifications
-  }));
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      theme:STATE.theme, user:STATE.user,
+      favorites:[...STATE.favorites], interested:[...STATE.interested],
+      following:[...STATE.following], likedPosts:[...STATE.likedPosts],
+      notifications:STATE.notifications
+    }));
+  }catch(e){ /* ambiente sem acesso a localStorage — segue só com estado em memória */ }
 }
 
 /* ---------------------------------------------------------
@@ -1326,15 +1328,6 @@ window.addEventListener('hashchange', render);
 applyTheme();
 renderNotifBadge();
 render();
-
-   // Forçar o fechamento da tela escura ao iniciar o site
-setTimeout(() => {
-  const overlay = document.getElementById('overlay');
-  if (overlay) {
-    overlay.hidden = true;
-    overlay.style.display = 'none';
-  }
-}, 500);
 
 })();
 
