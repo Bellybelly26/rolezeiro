@@ -1327,5 +1327,14 @@ applyTheme();
 renderNotifBadge();
 render();
 
+// Forçar o fechamento da tela escura ao iniciar o site
+setTimeout(() => {
+  const overlay = document.getElementById('overlay');
+  if (overlay) {
+    overlay.hidden = true;
+    overlay.style.display = 'none';
+  }
+}, 500);
+   
 })();
 
