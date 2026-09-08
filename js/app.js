@@ -197,7 +197,7 @@ function loadState(){
 }
 function defaultState(){
   return {
-    theme:'dark', user:null,
+    theme:'light', user:null,
     favorites:new Set(), interested:new Set(), following:new Set(), likedPosts:new Set(),
     notifications:[
       {id:'n1',icon:'bell',title:'Bem-vindo(a) ao Rolezeiro! Descubra seu próximo show.',time:'agora',unread:true},
