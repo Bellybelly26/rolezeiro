@@ -195,20 +195,16 @@ function loadState(){
     });
   }catch(e){ return defaultState(); }
 }
-   // Substitua a função antiga por esta:
 function defaultState(){
   return {
-    theme:'light', // Mudado de 'dark' para 'light'
-    user:null,
+    theme:'dark', user:null,
     favorites:new Set(), interested:new Set(), following:new Set(), likedPosts:new Set(),
     notifications:[
       {id:'n1',icon:'bell',title:'Bem-vindo(a) ao Rolezeiro! Descubra seu próximo show.',time:'agora',unread:true},
     ]
   };
 }
-// Substitua a função loadState antiga por esta:
-function loadState(){
-  return defaultState(); // Ignora o lixo da memória antiga e carrega o site branco
+let STATE = loadState();
 function persist(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify({
     theme:STATE.theme, user:STATE.user,
@@ -1331,14 +1327,5 @@ applyTheme();
 renderNotifBadge();
 render();
 
-// Forçar o fechamento da tela escura ao iniciar o site
-setTimeout(() => {
-  const overlay = document.getElementById('overlay');
-  if (overlay) {
-    overlay.hidden = true;
-    overlay.style.display = 'none';
-  }
-}, 500);
-   
 })();
 
